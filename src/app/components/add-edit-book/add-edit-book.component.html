@@ -1,0 +1,67 @@
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header">
+                        <h3 class="text-center font-weight-light my-4">{{operacion}} Libro</h3>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="form" (ngSubmit)="addBook()">
+                            <div class="form-floating mb-3" *ngIf="this.id == 0">
+                                <input class="form-control" id="inputISBN"
+                                       type="text" placeholder="Ingrese el ISBN"
+                                       formControlName="isbn">
+                                <label for="inputISBN">Ingresar ISBN</label>
+                                <div class="col lg-6 mt-2 text-center">
+                                    <button type="button"
+                                            class="btn btn-primary"
+                                            (click)="getDataBook()">Buscar ISBN</button>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" formControlName="title"
+                                       class="form-control mt-2"
+                                       placeholder="Ingrese el título" id="title">
+                                <label for="title">Título</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" formControlName="author"
+                                       class="form-control mt-2"
+                                       placeholder="Ingrese el autor" id="author">
+                                <label for="author">Autor</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" formControlName="stock"
+                                       class="form-control mt-2"
+                                       placeholder="Ingrese el stock" id="stock">
+                                <label for="stock">Stock</label>
+                            </div>
+                            <div class="row mt-2 text-center">
+                                <div class="col-lg-6">
+                                    <button type="submit"
+                                            class="btn btn-primary">Aceptar</button>
+                                </div>
+                                <div class="col-lg-6">
+                                    <button routerLink="/list-books" type="button"
+                                            class="btn btn-secondary">Volver</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna para mostrar la portada del libro -->
+            <div class="col-lg-4">
+                <div class="card shadow-lg border-0 rounded-lg mt-5" *ngIf="bookCoverUrl">
+                    <div class="card-header text-center">Portada del Libro</div>
+                    <div class="card-body text-center">
+                        <img [src]="bookCoverUrl" alt="Portada del libro"
+                             class="img-fluid" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
