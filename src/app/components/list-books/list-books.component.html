@@ -3,9 +3,7 @@
         <h1 class="mt-4">MATERIAL BIBLIOGRÁFICO</h1>
         <div class="container mb-2">
             <div class="d-flex justify-content-end">
-                <!-- Usar d-flex y justify-content-end -->
-                <button type="button" class="btn btn-success"
-                    routerLink="/add">AGREGAR LIBRO</button>
+                <button type="button" class="btn btn-success" routerLink="/add">AGREGAR LIBRO</button>
             </div>
         </div>
         <div class="card mb-4">
@@ -20,27 +18,33 @@
                             <th scope="col">TITULO</th>
                             <th scope="col">AUTOR</th>
                             <th scope="col">STOCK</th>
+                            <th scope="col">ESTADO</th>
                             <th scope="col">ACCIONES</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of listBook">
-                            <td>{{ item.title}}</td>
-                            <td>{{ item.author}}</td>
-                            <td>{{ item.stock}}</td>
+                            <td>{{ item.title }}</td>
+                            <td>{{ item.author }}</td>
+                            <td>{{ item.stock }}</td>
+                            <td>
+                                <!-- Mostrar "Disponible" si el stock es mayor a 0 -->
+                                <span *ngIf="item.stock > 0" class="badge bg-success ms-2 align-self-center">
+                                    Disponible
+                                </span>
+                                <!-- Mostrar "No disponible" si el stock es 0 -->
+                                <span *ngIf="item.stock === 0" class="badge bg-danger ms-2 align-self-center">
+                                    No disponible
+                                </span>
+                            </td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <button (click)="updateBook(item.id || 0)"
-                                        type="button"
+                                    <button (click)="showBook(item.id || 0)" type="button"
                                         class="btn btn-info btn-sm">VER</button>
-                                    <button type="button"
-                                        routerLink="/edit/{{item.id}}"
+                                    <button type="button" routerLink="/edit/{{item.id}}"
                                         class="btn btn-warning btn-sm ms-2">EDITAR</button>
-                                    <button (click)="deleteBook(item.id!)"
-                                        type="button"
+                                    <button (click)="deleteBook(item.id!)" type="button"
                                         class="btn btn-danger btn-sm ms-2">ELIMINAR</button>
-                                    <span
-                                        class="badge bg-success ms-2 align-self-center">ESTADO</span>
                                 </div>
                             </td>
                         </tr>

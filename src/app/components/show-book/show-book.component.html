@@ -1,0 +1,54 @@
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Columna para mostrar los datos del libro -->
+            <div class="col-lg-5">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header">
+                        <h3 class="text-center font-weight-light my-4">Detalles del Libro</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Mostrar detalles del libro de solo lectura -->
+                        <div *ngIf="book">
+                            <div class="mb-3">
+                                <label class="form-label">Título:</label>
+                                <p>{{ book.title }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Autor:</label>
+                                <p>{{ book.author }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Stock:</label>
+                                <p>{{ book.stock }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">ISBN:</label>
+                                <p>{{ book.isbn }}</p>
+                            </div>
+                        </div>
+
+                        <!-- Botón para volver a la lista de libros -->
+                        <div class="row mt-2 text-center">
+                            <div class="col-lg-12">
+                                <button routerLink="/list-books" type="button"
+                                        class="btn btn-secondary">Volver</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna para mostrar la portada del libro -->
+            <div class="col-lg-4" *ngIf="bookCoverUrl">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header text-center">Portada del Libro</div>
+                    <div class="card-body text-center">
+                        <img [src]="bookCoverUrl" alt="Portada del libro"
+                             class="img-fluid" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

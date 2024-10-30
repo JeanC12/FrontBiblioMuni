@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class ListBooksComponent implements OnInit {
   listBook: Book[] = [
   ];
-  
+
 
   constructor(private _bookService: BookService,
     private router: Router
@@ -29,6 +29,11 @@ export class ListBooksComponent implements OnInit {
     });
 
   }
+
+  showBook(id: number) {
+    this.router.navigate(['/show', id]);
+  }
+
   updateBook(id: number) {
     this.router.navigate(['/edit', id]);
   }

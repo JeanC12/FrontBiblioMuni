@@ -47,6 +47,7 @@ export class AddEditBookComponent {
       title: this.form.value.title,
       author: this.form.value.author,
       stock: this.form.value.stock,
+      isbn : this.form.value.isbn
     }
 
     if (this.id !== 0) {
@@ -72,7 +73,7 @@ export class AddEditBookComponent {
         title: data.title,
         author: data.author,
         stock: data.stock,
-        isbn: ''
+        isbn: data.isbn
       })
     })
   }

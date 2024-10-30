@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http'; // Importa el módulo H
 import { ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterTemplateComponent } from './components/footer-template/footer-template.component';
+import { ShowBookComponent } from './components/show-book/show-book.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FooterTemplateComponent } from './components/footer-template/footer-tem
     AddEditBookComponent,
     SidebarComponent,
     FooterTemplateComponent,
+    ShowBookComponent,
   ],
   imports: [
     BrowserModule,

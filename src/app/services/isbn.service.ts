@@ -22,7 +22,8 @@ export class IsbnService {
           return {
             title: response.title,
             author: response.authors[0], // Take the first author
-            stock: 0
+            stock: 0,
+            isbn: isbn
           };
         })
       );
