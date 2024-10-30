@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+
 import { BookService } from '../../services/book.service';
 import { Book } from '../../interfaces/book';
 import { IsbnService } from '../../services/isbn.service';
 import { PortraitService } from '../../services/portrait.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-edit-book',
