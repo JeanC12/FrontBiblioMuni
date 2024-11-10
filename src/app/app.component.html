@@ -1,8 +1,8 @@
-<app-navbar></app-navbar>
-<div id="layoutSidenav">
-    <app-sidebar></app-sidebar>
-    <div id="layoutSidenav_content">
+<app-navbar *ngIf="!isLoginPage"></app-navbar>
+<div [attr.id]="isLoginPage ? '' : 'layoutSidenav'">
+    <app-sidebar *ngIf="!isLoginPage"></app-sidebar>
+    <div [attr.id]="isLoginPage ? '' : 'layoutSidenav_content'">
         <router-outlet></router-outlet>
-        <app-footer-template></app-footer-template>
+        <app-footer-template *ngIf="!isLoginPage"></app-footer-template>
     </div>
 </div>
