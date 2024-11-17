@@ -7,6 +7,7 @@ import { ShowBookComponent } from './components/show-book/show-book.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { LogoutComponent } from './components/auth/logout/logout.component';
 import { NotFountComponentComponent } from './components/not-fount-component/not-fount-component.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 const routes: Routes = [
   //Home
@@ -14,12 +15,17 @@ const routes: Routes = [
   //Auth
   { path: 'login', component: LoginComponent},
   { path: 'logout', component: LogoutComponent},
-  // CRUD
+  //CRUD
   { path: 'list-books', component: ListBooksComponent },
   { path: 'add', component: AddEditBookComponent },
   { path: 'edit/:id', component: AddEditBookComponent },
   { path: 'show/:id', component: ShowBookComponent },
-  { path: '**', component: NotFountComponentComponent }
+
+  //Chatbot
+  { path: 'chatbot', component: ChatbotComponent}, 
+  //404
+  { path: '**', component: NotFountComponentComponent },
+  
 ];
 
 @NgModule({

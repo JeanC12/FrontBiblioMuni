@@ -16,6 +16,7 @@ import { LogoutComponent } from './components/auth/logout/logout.component';
 import { NotFountComponentComponent } from './components/not-fount-component/not-fount-component.component';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AuthService } from './services/auth.service';
     LoginComponent,
     LogoutComponent,
     NotFountComponentComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,
