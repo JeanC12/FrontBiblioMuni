@@ -3,6 +3,7 @@ import { BookService } from '../../services/book.service';
 import { ActivatedRoute } from '@angular/router';
 import { Book } from '../../interfaces/book';
 import { PortraitService } from '../../services/portrait.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-show-book',
@@ -13,17 +14,27 @@ export class ShowBookComponent implements OnInit {
   book: Book | null = null; // Cambiamos el tipo de `book` para que sea opcional
   id: number;
   bookCoverUrl: string = ''; // URL para la portada del libro
+  currentUser: any = null; // Para almacenar los datos del usuario logueado
 
   constructor(
     private _bookService: BookService,
     private aRouter: ActivatedRoute,
     private _portraitService: PortraitService,
+    private authService: AuthService // Inyectamos el AuthService
   ) {
     this.id = Number(aRouter.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {
     this.getDataBook(this.id);
+    this.loadUserData(); // Cargamos los datos del usuario al iniciar
+  }
+
+  loadUserData() {
+    this.currentUser = this.authService.currentUser; // Obtenemos los datos del usuario desde el AuthService
+    if (!this.currentUser) {
+      console.error('No hay usuario logueado.');
+    }
   }
 
   getDataBook(id: number): void {

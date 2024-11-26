@@ -1,28 +1,33 @@
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
-            <div class="nav">
+            <div *ngIf="userrole=='admin'" class="nav">
                 <div class="sb-sidenav-menu-heading">Libros</div>
-                <a class="nav-link" routerLink="/list-books">
+                <a class="nav-link" href="/list-books">
                     <div class="sb-nav-link-icon"><i
                             class="fas fa-tachometer-alt"></i></div>
                     Material Bibliográfico
                 </a>
-
+            </div>
+            <div *ngIf="userrole=='user'" class="nav">
+                <div class="sb-sidenav-menu-heading">Libros</div>
+                <a class="nav-link" href="/list-borrow-books">
+                    <div class="sb-nav-link-icon"><i
+                            class="fas fa-tachometer-alt"></i></div>
+                    Préstamo de libros
+                </a>
             </div>
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Extras</div>
-                <a class="nav-link" routerLink="/chatbot">
+                <a class="nav-link" href="/chatbot">
                     <div class="sb-nav-link-icon"><i
                             class="fas fa-tachometer-alt"></i></div>
                     Chatbot
                 </a>
-
             </div>
         </div>
         <div class="sb-sidenav-footer">
-            <div class="small">Sesión como:</div>
-            Admin
+            <div class="small">Sesión como: {{ username  }}</div>  
         </div>
     </nav>
 </div>

@@ -8,21 +8,26 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { LogoutComponent } from './components/auth/logout/logout.component';
 import { NotFountComponentComponent } from './components/not-fount-component/not-fount-component.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
+import { RoleGuard } from './guards/role.guard';
+import { BorrowListBooksComponent } from './components/borrow/borrow-list-books/borrow-list-books.component';
+import { RedirectGuard } from './guards/redirect-guard.guard';
+import { DefauldComponentComponent } from './components/defauld-component/defauld-component.component';
 
 const routes: Routes = [
   //Home
-  { path: '', component: LoginComponent},
+  { path: '', component: DefauldComponentComponent, canActivate: [RedirectGuard] },
   //Auth
   { path: 'login', component: LoginComponent},
   { path: 'logout', component: LogoutComponent},
-  //CRUD
-  { path: 'list-books', component: ListBooksComponent },
-  { path: 'add', component: AddEditBookComponent },
-  { path: 'edit/:id', component: AddEditBookComponent },
-  { path: 'show/:id', component: ShowBookComponent },
+  { path: 'list-books', component: ListBooksComponent , canActivate: [RoleGuard], data: {expectedRoles: ['admin']}},
+  { path: 'list-borrow-books', component: BorrowListBooksComponent , canActivate: [RoleGuard], data: {expectedRoles: ['user']}},
+  { path: 'add', component: AddEditBookComponent , canActivate: [RoleGuard], data: {expectedRoles: ['admin']}},
+  { path: 'edit/:id', component: AddEditBookComponent , canActivate: [RoleGuard], data: {expectedRoles: ['admin']}},
+  { path: 'show/:id', component: ShowBookComponent , canActivate: [RoleGuard], data: {expectedRoles: ['admin','user']}},
+  
 
   //Chatbot
-  { path: 'chatbot', component: ChatbotComponent}, 
+  { path: 'chatbot', component: ChatbotComponent, canActivate: [RoleGuard], data: {expectedRoles: ['admin','user']}}, 
   //404
   { path: '**', component: NotFountComponentComponent },
   

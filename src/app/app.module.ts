@@ -17,6 +17,8 @@ import { NotFountComponentComponent } from './components/not-fount-component/not
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
+import { BorrowListBooksComponent } from './components/borrow/borrow-list-books/borrow-list-books.component';
+import { DefauldComponentComponent } from './components/defauld-component/defauld-component.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ChatbotComponent } from './components/chatbot/chatbot.component';
     LoginComponent,
     LogoutComponent,
     NotFountComponentComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    BorrowListBooksComponent,
+    DefauldComponentComponent
   ],
   imports: [
     BrowserModule,

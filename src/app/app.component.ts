@@ -19,8 +19,19 @@ export class AppComponent {
         this.isLoginPage = event.url === '/login' || event.url === '/';
 
         this.isReady = true;
+        console.log("ROLE>>>",this.getRole());
       }
     });
+  }
+
+  getRole(){
+    console.log("Getting");
+    if (typeof localStorage !== 'undefined'){
+      const storedRole = localStorage.getItem('role');
+      console.log(storedRole);
+      return storedRole;
+    }
+    return 'admin';
   }
 
 }

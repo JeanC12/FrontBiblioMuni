@@ -56,13 +56,13 @@ export class AddEditBookComponent {
       book.id = this.id;
       this._bookService.updateBook(this.id, book).subscribe(() => {
         console.log('Libro actualizado');
-        this.router.navigate(['/books']);
+        this.router.navigate(['/']);
       })
     } else {
       //agregar
       this._bookService.saveBook(book).subscribe(() => {
         console.log('Libro agregado');
-        this.router.navigate(['/books']);
+        this.router.navigate(['/']);
       })
 
     };

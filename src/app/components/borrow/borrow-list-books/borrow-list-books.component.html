@@ -1,0 +1,57 @@
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">PRESTAMOS DE LIBROS</h1>
+        <p>Usuario: {{ currentUser?.user_name }}</p>
+
+        <!-- Mostrar el código de préstamo generado -->
+        <div *ngIf="borrowCode" class="alert alert-info mt-3">
+            <strong>Código de Préstamo:</strong> {{ borrowCode }}
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Existencias
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">TÍTULO</th>
+                            <th scope="col">AUTOR</th>
+                            <th scope="col">STOCK</th>
+                            <th scope="col">ESTADO</th>
+                            <th scope="col">ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of listBook">
+                            <td>{{ item.title }}</td>
+                            <td>{{ item.author }}</td>
+                            <td>{{ item.stock }}</td>
+                            <td>
+                                <!-- Mostrar "Disponible" si el stock es mayor a 0 -->
+                                <span *ngIf="item.stock > 0" class="badge bg-success ms-2 align-self-center">
+                                    Disponible
+                                </span>
+                                <!-- Mostrar "No disponible" si el stock es 0 -->
+                                <span *ngIf="item.stock === 0" class="badge bg-danger ms-2 align-self-center">
+                                    No disponible
+                                </span>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <button (click)="showBook(item.id || 0)" type="button"
+                                        class="btn btn-info btn-sm">VER</button>
+                                    <button (click)="borrowBook(item)" type="button"
+                                        class="btn btn-warning btn-sm ms-2" 
+                                        [disabled]="item.stock === 0">PRESTAR</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>

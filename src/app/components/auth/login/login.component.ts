@@ -6,7 +6,7 @@ import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']  // Corregido a "styleUrls"
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   form: FormGroup;
@@ -17,21 +17,40 @@ export class LoginComponent {
     private authService: AuthService
   ) {
     this.form = this.fb.group({
-      user: ['', [Validators.required]],  // Se agrega validación de email
+      user: ['', [Validators.required]],
       password: ['', Validators.required]
     });
   }
 
   login() {
     if (this.form.invalid) {
-      this.form.markAllAsTouched(); // Marca todos los campos para mostrar errores
+      this.form.markAllAsTouched();
       return;
     }
-    
+
     const credentials = {
       user_name: this.form.value.user,
       user_password: this.form.value.password
     };
-    this.authService.login(credentials);
+
+    this.authService.login(credentials).subscribe(
+      () => {
+        const user = this.authService.currentUser;
+        if (user) {
+          console.log(user);
+          //   alert(`Bienvenido ${user.user_name}! Tu rol es ${user.user_role}`);
+          if (user.user_role == "admin") {
+            this.router.navigate(['/list-books']);
+          } else {
+            this.router.navigate(['/list-borrow-books']);
+          }
+
+        }
+      },
+      err => {
+        console.error(err);
+        alert('Credenciales inválidas');
+      }
+    );
   }
 }
